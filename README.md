@@ -5,6 +5,10 @@ This application allows you to manage guild members; edit their roles, add a gui
 
 Github Repository: https://github.com/mvanni4994
 
+## App Features
+
+![Screenshot_Deployed_Website](https://github.com/mvanni4994/The_Guild_Tracker/blob/main/Capture.JPG?raw=true)
+
 ## Instructions
 In your terminal, run node memberTracker.js, select a choice from the directory and fill out the prompts.
 
