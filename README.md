@@ -1,5 +1,3 @@
-# Employee_Tracker
-
 # Employee_Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
