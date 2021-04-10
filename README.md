@@ -1,12 +1,12 @@
 # Employee_Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-This application allows you to create and update both staff and their corresponding positions.
+This application allows you to manage guild members; edit their roles, add a guild, and welcome new members.
 
 Github Repository: https://github.com/mvanni4994
 
 ## Instructions
-In your terminal, run node index.js, select a choice from the directory and fill out the prompts.
+In your terminal, run node memberTracker.js, select a choice from the directory and fill out the prompts.
 
 ## Technology Used
 JavaScript, JQuery, HTML, CSS, inquirer, SQL, npm i for dependencies
