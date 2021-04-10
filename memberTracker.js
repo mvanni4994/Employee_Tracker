@@ -193,3 +193,67 @@ async function addEmployee(){
         })
     })
 }    
+
+function getRoles(){
+    return new Promise(function(resolve, reject){
+        var titles = []
+        connection.query("SELECT title FROM title_role", function(err, res){
+            if(err) reject(err);
+            for (let i = 0; i < res.length; i++){
+                titles.push(res[i].title)
+            } 
+            resolve(titles);
+        })
+    })
+}
+
+function getEmployees(){
+    return new Promise(function (resolve, reject){
+        connection.query("SELECT * FROM employee", function(err, res){
+            if(err) reject(err);
+            resolve(res);
+        })
+    })
+}
+
+function addRole(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'What is the title of the member?',
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'What is the salary of the member?',
+        },
+    ]).then(function(res){
+    })
+}
+
+function addDepartment(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'dep_name',
+            message: 'What is the name of the guild?',
+        },
+    ]).then(function(res){
+        connection.query("INSERT INTO department SET ?",
+            { name: res.dep_name }, 
+            function(err){
+                if (err) throw err
+                console.table(res)
+                startApp();
+            })
+    })
+}
+
+function quit(){
+    connection.end()
+}
+
+app.listen(PORT, () =>
+  console.log(`Server listening on: http://localhost:${PORT}`)
+)
