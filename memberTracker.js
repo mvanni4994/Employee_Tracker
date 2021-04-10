@@ -84,7 +84,6 @@ async function startApp(){
 
 
 function allEmployees(){
-    console.log("working?")
     return new Promise(function (resolve, reject){
         connection.query("SELECT employee.first_name, employee.last_name FROM employee", function(err, res){
             if(err) reject(err);
@@ -171,7 +170,6 @@ async function addEmployee(){
             choices: managerNames
         },
     ]).then(async function(res){
-        console.log(res.firstName, res.lastName, res.role, res.managerChoice);
         var roleID = await new Promise(function(resolve, reject){
             connection.query("SELECT * FROM title_role WHERE title = ?", [res.role], function(err, res){
             if (err) reject(err);
