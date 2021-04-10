@@ -23,3 +23,62 @@ connection.connect(function(err){
     if (err) throw err;
     startApp();
 })
+
+
+getRoles();
+
+
+
+async function startApp(){
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'options',
+            message: 'What would you like to do?',
+            choices: [
+                "View All Members",
+                "View Members By Guild",
+                "View Members By Role",
+                "Update Member",
+                "Add Member",
+                "Add Role",
+                "Add Guild",
+                "Quit",
+            ]
+        }
+    ]).then(function(res){
+            switch (res.options){
+                case "View All Members":
+                    allEmployees();
+                break; 
+
+                case "View Members by Guild":
+                    employeeDepartment();
+                break;
+
+                case "View Members By Role":
+                    employeeRole();
+                break;
+
+                case "Update Member":
+                    updateEmployee();
+                break;
+
+                case "Add Member":
+                    addEmployee();
+                break;
+
+                case "Add Role":
+                    addRole();
+                break;
+
+                case "Add Guild":
+                    addDepartment();
+                break;
+
+                default:
+                    quit();
+            }
+        })
+}
+
