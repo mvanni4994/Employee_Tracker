@@ -82,3 +82,64 @@ async function startApp(){
         })
 }
 
+
+function allEmployees(){
+    console.log("working?")
+    return new Promise(function (resolve, reject){
+        connection.query("SELECT employee.first_name, employee.last_name FROM employee", function(err, res){
+            if(err) reject(err);
+            resolve(res);
+        })
+    })
+}
+
+
+
+function employeeDepartment(){
+    connection.query,
+    function(err, res){
+        if (err) throw err
+        console.table(res)
+        startApp();
+    }
+}
+
+function employeeRole(){
+    connection.query,
+    function(err, res){
+        if (err) throw err
+        console.table(res)
+        startApp();
+    }
+}
+
+function updateEmployee(){
+    connection.query,
+    function(err, res){
+        if (err) throw err
+        console.table(res)
+        startApp();
+    }
+}
+
+
+function chooseRole(){
+    connection.query("SELECT * FROM role", function(err, res){
+        if (err) throw err;
+        for (var i=0; i < res.length; i++){
+            roleArray.push(res[i].role)
+        }
+    })
+} return roleArray;
+
+function chooseManager(){
+    return new Promise(function(resolve, reject){
+        connection.query("SELECT first_name, last_name FROM employee WHERE manager_id IS NULL", function(err, res){
+            if (err) throw err;
+            for (var i=0; i < res.length; i++){
+                managerArray.push(res[i].first_name)
+            }
+            resolve(managerArray)
+        })
+    })  
+}
