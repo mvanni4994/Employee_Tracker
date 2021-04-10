@@ -1,4 +1,4 @@
-# Employee_Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# The Guild Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 This application allows you to manage guild members; edit their roles, add a guild, and welcome new members.
