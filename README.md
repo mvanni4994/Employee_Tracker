@@ -1,12 +1,18 @@
-# Employee_Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# The Guild Tracker [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-This application allows you to create and update both staff and their corresponding positions.
+This application allows you to manage guild members; edit their roles, add a guild, and welcome new members.
+
+Video Walkthrough: https://drive.google.com/file/d/1sALh4lY8FWT9SNQSndUPy26wMQrOtScQ/view
 
 Github Repository: https://github.com/mvanni4994
 
+## App Features
+
+![Screenshot_Deployed_Website](https://github.com/mvanni4994/The_Guild_Tracker/blob/main/Capture.JPG?raw=true)
+
 ## Instructions
-In your terminal, run node index.js, select a choice from the directory and fill out the prompts.
+In your terminal, run node memberTracker.js, select a choice from the directory and fill out the prompts.
 
 ## Technology Used
 JavaScript, JQuery, HTML, CSS, inquirer, SQL, npm i for dependencies
