@@ -143,3 +143,53 @@ function chooseManager(){
         })
     })  
 }
+
+async function addEmployee(){
+    var getTitles = await getRoles();
+    var managerNames = await chooseManager();
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstName',
+            message: 'What is the first name of the member?',
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'What is the last name of the member?',
+        },
+        {
+            type: 'list',
+            name: 'role',
+            message: 'What is the members role?',
+            choices: getTitles
+        },
+        {
+            type: 'list',
+            name: 'managerChoice',
+            message: 'Who is their guild manager?',
+            choices: managerNames
+        },
+    ]).then(async function(res){
+        console.log(res.firstName, res.lastName, res.role, res.managerChoice);
+        var roleID = await new Promise(function(resolve, reject){
+            connection.query("SELECT * FROM title_role WHERE title = ?", [res.role], function(err, res){
+            if (err) reject(err);
+            resolve(res[0].id);
+        })
+    })
+        var managerID = await new Promise(function(resolve, reject){
+            connection.query("SELECT * FROM employee WHERE first_name = ?", [res.managerChoice], function(err, res){
+            if (err) reject(err);
+            resolve(res[0].id);
+        })
+    })
+        connection.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${res.firstName}", "${res.lastName}", "${roleID}", "${managerID}")`,
+        async function(err, res){
+            if (err) throw err;
+            var allEmployees = await getEmployees();
+            console.table(allEmployees);
+            startApp();
+        })
+    })
+}    
