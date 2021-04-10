@@ -3,6 +3,8 @@
 ## Description
 This application allows you to manage guild members; edit their roles, add a guild, and welcome new members.
 
+Video Walkthrough: https://drive.google.com/file/d/1sALh4lY8FWT9SNQSndUPy26wMQrOtScQ/view
+
 Github Repository: https://github.com/mvanni4994
 
 ## App Features
