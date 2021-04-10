@@ -76,3 +76,130 @@ function askUser() {
         }
     })
 }
+
+function userDelete() {
+    inquirer
+    .prompt([
+        {
+        name: "view",
+        type: "rawlist",
+        message: "What information would you like to delete?",
+        choices: [
+            "Employees",
+            "Departments",
+            "Roles"
+        ]
+        }
+    ]).then(function(answer) {
+        switch (answer.view) {
+            case "Employees":
+                deleteEmployee()
+            break;
+            case "Departments":
+                deleteDepartments()
+            break;
+            case "Roles":
+                deleteRoles()
+            break;
+        }
+    })
+}
+
+function deleteEmployee() {
+    connection.query("SELECT employee.last_name FROM employee", function(err, answer) {
+         if (err) throw err;
+    inquirer
+    .prompt([
+    {
+        name: "employee",
+        type: "rawlist",
+        message: "Choose employee to delete.",
+        choices: function() {
+            var lastName = [];
+            for (var i = 0; i < answer.length; i++) {
+              lastName.push(answer[i].last_name);
+            }
+            return lastName;
+          },
+    },
+    ]).then(function(response) {
+        connection.query(
+        "DELETE FROM employee WHERE ?",
+        {
+            last_name: response.employee
+        },
+        function(err) {
+            if (err) throw err;
+            console.table(response);
+            console.log("You successfully deleted an employee");
+            askUser()
+        })
+        })
+    })
+}
+
+function deleteDepartments() {
+    connection.query("SELECT name FROM department", function(err, answer) {
+         if (err) throw err;
+    inquirer
+    .prompt([
+    {
+        name: "department",
+        type: "rawlist",
+        message: "Choose department to delete.",
+        choices: function() {
+            var department = [];
+            for (var i = 0; i < answer.length; i++) {
+              department.push(answer[i].name);
+            }
+            return department;
+        },
+    },
+    ]).then(function(response) {
+    connection.query(
+        "DELETE FROM department WHERE ?",
+        {
+            name: response.department
+        },
+        function(err) {
+            if (err) throw err;
+            console.table(response);
+            console.log("You successfully deleted a department");
+            askUser()
+        })
+    })
+    })
+}
+
+function deleteRoles() {
+    connection.query("SELECT role.title FROM role", function(err, answer) {
+         if (err) throw err;
+    inquirer
+    .prompt([
+    {
+        name: "role",
+        type: "rawlist",
+        message: "Choose role to delete.",
+        choices: function() {
+            var role = [];
+            for (var i = 0; i < answer.length; i++) {
+              role.push(answer[i].title);
+            }
+            return role;
+        },
+    },
+    ]).then(function(response) {
+    connection.query(
+        "DELETE FROM role WHERE ?",
+        {
+            title: response.role
+        },
+        function(err) {
+            if (err) throw err;
+            console.table(response);
+            console.log("You successfully deleted a role");
+            askUser()
+        })
+    })
+    })
+}
