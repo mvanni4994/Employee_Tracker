@@ -25,11 +25,11 @@ connection.connect(function(err){
 })
 
 
-getRoles();
+// getRoles();
 
 
 
-async function startApp(){
+function startApp(){
     inquirer.prompt([
         {
             type: 'list',
@@ -75,9 +75,6 @@ async function startApp(){
                 case "Add Guild":
                     addDepartment();
                 break;
-
-                default:
-                    quit();
             }
         })
 }
@@ -146,6 +143,7 @@ function chooseManager(){
 async function addEmployee(){
     var getTitles = await getRoles();
     var managerNames = await chooseManager();
+    console.log(managerNames);
     inquirer.prompt([
         {
             type: 'input',
@@ -207,7 +205,7 @@ function getRoles(){
 
 function getEmployees(){
     return new Promise(function (resolve, reject){
-        connection.query("SELECT * FROM employee", function(err, res){
+        connection.query(`SELECT * FROM employee`, function(err, res){
             if(err) reject(err);
             resolve(res);
         })
@@ -226,8 +224,19 @@ function addRole(){
             name: 'salary',
             message: 'What is the salary of the member?',
         },
+        // {
+        //     type: 'input',
+        //     name: 'department',
+        //     message: 'What is the department number?',
+        // },
     ]).then(function(res){
-    })
+        let query=`INSERT INTO title_role (title, salary) VALUES (?, ?)`
+        connection.query(query, [res.title, res.salary], function(err, res){
+            if (err) throw err;
+            console.log("added new role");
+            startApp(); 
+        });
+    });
 }
 
 function addDepartment(){
@@ -252,6 +261,3 @@ function quit(){
     connection.end()
 }
 
-app.listen(PORT, () =>
-  console.log(`Server listening on: http://localhost:${PORT}`)
-)
